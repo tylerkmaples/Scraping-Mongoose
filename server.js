@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Make public a static folder
-app.use(express.static('public'));
+app.use(express.static('/public'));
 
 // === Connect to the Mongo DB === //
 
@@ -34,8 +34,7 @@ require("./routes/apiRoutes.js")(app);
 
 
 // htmlRoutes will hold all of the routes that grab info from mongodb and pass into handlebars
-// const htmlRoutes = require("./routes/htmlRoutes.js");
-// app.use(htmlRoutes);
+require("./routes/htmlRoutes.js")(app);
 
 // === Server === //
 app.listen(PORT, function() {
