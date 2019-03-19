@@ -1,6 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); 
+const path = require("path");
 
 // Define the PORT to use
 const PORT = 3000;
@@ -19,7 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Make public a static folder
-app.use(express.static('/public'));
+// app.use('/public', express.static('/public'));
+app.use(express.static(path.join(__dirname,'/public')))
 
 // === Connect to the Mongo DB === //
 

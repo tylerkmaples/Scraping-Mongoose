@@ -51,7 +51,7 @@ module.exports = {
                 });
             });
             // once all this is ran, redirect to the index handlebars
-            res.redirect('/');
+            res.redirect('/topic/:topic');
         })
     },
 

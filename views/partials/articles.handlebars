@@ -1,0 +1,23 @@
+{{!-- <div class="col-md-3 mb-3 text-white">
+    <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
+        <a href="/book/{{this.id}}">
+            <div class="card-img-overlay">
+                <h4>{{this.title}}</h4>
+            </div>
+        </a>
+    </div>
+</div> --}}
+
+<ul class="list-unstyled">
+    <li class="media">
+        <img src="{{this.picture}}" class="mr-3" alt="article picture">
+        <div class="media-body">
+            <h5 class="mt-0 mb-1">{{this.title}}</h5>
+            {{this.summary}}
+            <span><i class="fas fa-newspaper ml-auto" style="color: #02a4d3"></i></span>
+        </div>
+    </li>
+</ul>
+
+{{> modal}}
+{{!-- <a href="#" data-toggle="modal" data-target="#articleModal"></a> --}}

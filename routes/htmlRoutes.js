@@ -3,4 +3,5 @@ const htmlController = require("../controllers/htmlController");
 
 module.exports = function (app) {
     app.get("/", htmlController.index)
+    app.get("/topic/:topic", htmlController.indexTopic);
 }
