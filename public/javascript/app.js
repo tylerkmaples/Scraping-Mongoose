@@ -12,7 +12,7 @@ $("#scrollDownBtn").click(function() {
 
     // === Save articles === //
 $('#heartBtn').on('click', function() {
-    const id = $(this).parents('.media').data();
+    const id = $(this).attr('data-id');
     console.log(id);
     const changeArt = {
         _id: id
@@ -23,6 +23,6 @@ $('#heartBtn').on('click', function() {
         data: changeArt
     }).then(function(doc) {
        console.log(doc);
-    //    location.reload();
+       location.reload();
     });
 });

@@ -9,7 +9,7 @@
 </div> --}}
 
 <ul class="list-unstyled">
-    <li class="media" data-id="{{this._id}}">
+    <li class="media">
         <img src="{{this.picture}}" class="mr-3" alt="article picture">
         <p>{{this.topic}}</p>
         <div class="media-body">
@@ -19,7 +19,7 @@
                         class="fas fa-link" style="color: #02a4d3"></i></a></span>
             <span><i class="far fa-sticky-note" style="color: #02a4d3"></i></span>
             {{!-- put a link in the heart so that when clicked, it hits the api route to change the value of saved from false to true, changes the stle of the heart, and redirects to the savedPartial html route --}}
-            <span id="heartBtn"><a><i class="far fa-heart" style="color: #02a4d3"></a></i></span>
+            <span id="heartBtn" data-id="{{this._id}}"><a><i class="far fa-heart" style="color: #02a4d3"></a></i></span>
         </div>
     </li>
 </ul>

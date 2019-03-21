@@ -56,19 +56,27 @@ module.exports = {
     },
     // === NOT WORKING YET, REQ IS NULL === //
     saveArticle: function (req, res) {
-        const saveArt = req.body
-        console.log(req);
-        const id = saveArt.id;
-        db.Article.findById(id, {new: true}, function(err, updatedArt){
-            if (err) return handleError(err);
-            updatedArt.saved = !updatedArt.saved
-            updatedArt.save(function(err){
-                if(err) return handleError(err);
-                res.send(updatedArt);
+        console.log(req.body);
+        const id = req.body._id;
+        db.Article.update({_id: id}, {$set: {saved: true}}, {new: true})
+            .then(function(upSave) {
+                console.log(upSave);
+                res.send(upSave);
             })
-            // console.log(doc);
-            // res.send(doc);
-        });
+            .catch(function(error){
+                console.log(error);
+            })
+        // db.Article.findById(id, {new: true}, function(err, updatedArt){
+        //     if (err) return handleError(err);
+        //     console.log(updatedArt);
+        //     updatedArt.saved = !updatedArt.saved
+        //     updatedArt.save(function(err){
+        //         if(err) return handleError(err);
+        //         res.send(updatedArt);
+        //     })
+        //     // console.log(doc);
+        //     // res.send(doc);
+        // });
     },
     // === delete article from saved article and change from true to false for save === //
     unsaveArticle: function(req, res) {
