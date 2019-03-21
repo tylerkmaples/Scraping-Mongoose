@@ -13,13 +13,14 @@ $("#scrollDownBtn").click(function() {
     // === Save articles === //
 $('#heartBtn').on('click', function() {
     const id = $(this).parents('.media').data();
-    const data = {
+    console.log(id);
+    const changeArt = {
         _id: id
     }
     $.ajax({
         method: 'PUT',
         url: '/api/saveArticle',
-        data: data
+        data: changeArt
     }).then(function(doc) {
        console.log(doc);
     //    location.reload();

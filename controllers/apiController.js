@@ -54,9 +54,10 @@ module.exports = {
             res.redirect('/topic/' + topic);
         })
     },
-    // === NOT WORKING YET, KEEPS SAYING NULL === //
+    // === NOT WORKING YET, REQ IS NULL === //
     saveArticle: function (req, res) {
         const saveArt = req.body
+        console.log(req);
         const id = saveArt.id;
         db.Article.findById(id, {new: true}, function(err, updatedArt){
             if (err) return handleError(err);
