@@ -11,15 +11,15 @@ const db = require("../models");
 module.exports = {
 
     // Scrape ===> grab info from website via axios and storing it into the db
-    scrape: function(req, res) {
+    scrape: function (req, res) {
         const topic = req.params.topic;
         // Use axios to grab the body of the html, then load that into cheerio and save it to $.
-        axios.get("http://www.nytimes.com/section/" + topic).then(function(response) {
+        axios.get("http://www.nytimes.com/section/" + topic).then(function (response) {
             const $ = cheerio.load(response.data);
 
             // Now, grab content from the news page.
-            $("div.css-4jyr1y a").each(function(i, element) {
-                
+            $("div.css-4jyr1y a").each(function (i, element) {
+
                 // Save an empty result object to late push to db
                 const articleResults = {};
 
@@ -42,18 +42,58 @@ module.exports = {
                 articleResults.saved = false
                 // Create a new Article using the `result` object built from scraping
                 db.Article.create(articleResults)
-                .then(function (dbArticle) {
-                    // View the added results in the console
-                    console.log(dbArticle);
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+                    .then(function (dbArticle) {
+                        // View the added results in the console
+                        console.log(dbArticle);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
             });
             // once all this is ran, redirect to the index handlebars
             res.redirect('/topic/' + topic);
         })
     },
+    // === NOT WORKING YET, KEEPS SAYING NULL === //
+    saveArticle: function (req, res) {
+        const saveArt = req.body
+        const id = saveArt.id;
+        db.Article.findById(id, {new: true}, function(err, updatedArt){
+            if (err) return handleError(err);
+            updatedArt.saved = !updatedArt.saved
+            updatedArt.save(function(err){
+                if(err) return handleError(err);
+                res.send(updatedArt);
+            })
+            // console.log(doc);
+            // res.send(doc);
+        });
+    },
+    // === delete article from saved article and change from true to false for save === //
+    unsaveArticle: function(req, res) {
+
+
+
+
+
+    },
+    // === delete all articles === //
+    deleteAll: function(req, res) {
+
+
+
+
+
+    },
+    // === add note === //
+    addNote: function(req, res) {
+
+
+
+
+    },
+    // === delete note === //
+    deleteNote: function(req, res) {
 
 
 
@@ -61,4 +101,5 @@ module.exports = {
 
 
 
+    }
 }

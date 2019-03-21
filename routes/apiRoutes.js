@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.get("/api/scrape/:topic", apiController.scrape);
 
     // Route to save any article that was scraped
-    // app.put("api/saveArticle", apiController.saveArticle);
+    app.put("/api/saveArticle", apiController.saveArticle);
 
     // Route to delete all articles from scraped/saved
     // app.delete("api/deleteAll", apiController.deleteAll);
