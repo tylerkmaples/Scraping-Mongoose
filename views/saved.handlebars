@@ -1,0 +1,22 @@
+{{#if articles}}
+<ul class="list-unstyled">
+    <li class="media">
+        <img src="{{this.picture}}" class="mr-3" alt="article picture">
+        <p>{{this.topic}}</p>
+        <div class="media-body">
+            <h5 class="mt-0 mb-1">{{this.title}}</h5>
+            {{this.summary}}
+            <span><a href="https://www.nytimes.com{{this.link}}" target="_blank" rel="noopener noreferrer"><i
+                        class="fas fa-link" style="color: #02a4d3"></i></a></span>
+            <span><i class="far fa-sticky-note noteBtn" data-id="{{this._id}}" data-toggle="modal" data-target="#noteModal" style="color: #02a4d3"></i></span>
+            <span><i data-id="{{this._id}}" class="fas fa-heart heartBtn" style="color: #02a4d3"></i></span>
+            {{!-- put a link in the heart so that when clicked, it hits the api route to change the value of saved from false to true, changes the stle of the heart, and redirects to the savedPartial html route --}}
+            {{!-- if this.saved (render the ones with hearts so it's consistent) ////// else (render the ones without the save) --}}
+            {{!-- this makes it so whenver the page refreshes, it will make sure to pull the ones that are saved and keep them with a heart --}}
+            {{!-- <span><i data-id="{{this._id}} " class="far fa-heart heartBtn" style="color: #02a4d3"></i></span> --}}
+        </div>
+    </li>
+</ul>
+{{else}}
+{{> landing}}
+{{/if}}
