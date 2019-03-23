@@ -109,10 +109,11 @@ module.exports = {
     // === add note === //
     addNote: function(req, res) {
         console.log(`*******${req.params._id}**********`);
+        console.log(`**********${req.body}***********`)
         const articleId = req.params._id;
         db.Note.create(req.body)
         .then(function(dbNote){
-            return db.Article.findOneAndUpdate({ _id: articleId}, {note: dbNote._id}, {new: true});
+            return db.Article.findOneAndUpdate({ _id: articleId}, {$push: {note: dbNote._id}}, {new: true});
         })
         .then(function (dbArticle) {
             res.json(dbArticle);

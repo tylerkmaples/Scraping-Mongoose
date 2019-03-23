@@ -19,7 +19,7 @@ module.exports = function(app) {
     app.get("/api/notes/:_id", apiController.getNote);
 
     // // Route to add a note to the article
-    app.post("api/articles/:_id", apiController.addNote);
+    app.post("api/notes/:_id", apiController.addNote);
 
     // // Route to delete a note from an article
     // app.delete("api/note/:id", apiController.deleteNote);

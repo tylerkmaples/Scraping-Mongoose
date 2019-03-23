@@ -88,27 +88,27 @@ $('.noteBtn').on('click', function () {
         url: "/api/notes/" + _id
     }).then(function (resp) {
         console.log(resp);
-        // if (resp.Note) {
-        //     $('.notesDisplay').empty();
-        //     resp.note.forEach(function (e) {
-        //         noteDisplay.append(`<li class='comment' data-id='${e._id}'>${e.body}</li>`)
-        //     })
-        // }
-        // else {
-        //     $('.notesDisplay').empty();
-        //     $('.notesDisplay').append(`<h4>No Notes Yet</h4> <hr>`)
-        // }
+        if (resp.note) {
+            $('.notesDisplay').empty();
+            resp.note.forEach(function (e) {
+                noteDisplay.append(`<li class='comment' data-id='${e._id}'>${e.body}</li>`)
+            })
+        }
+        else {
+            $('.notesDisplay').empty();
+            $('.notesDisplay').append(`<h4>No Notes Yet</h4> <hr>`)
+        }
     })
 });
 
 // === Click on Add Note to Add a Note === //
 $('.addNoteBtn').on('click', function() {
-    const _id = $(this).attr("data-id");
+    const _id = $(this).parents('.modal').attr("data-id");
     const noteBody = $('.noteArea').val().trim();
-    const data = { _id: _id, body: noteBody};
+    const data = { body: noteBody};
     $.ajax({
         method: 'POST',
-        url: "/api/articles/" + _id,
+        url: "/api/notes/" + _id,
         data: data
     }).then(function(resp){
         console.log(resp);
