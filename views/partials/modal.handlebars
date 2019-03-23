@@ -8,11 +8,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <div class="container-fluid">
+                    {{!-- row to hold notes --}}
+                    <div class="row">
+                        <div class="col-md-12 notesDisplay">
+                            <ul></ul>
+                        </div>
+                    </div>
+                    {{!-- row to hold input for note --}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="noteArea">Add a Note</label>
+                                    <textarea class="form-control noteArea" rows="1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary addNoteBtn">Add Note</button>
             </div>
         </div>
     </div>

@@ -92,13 +92,36 @@ module.exports = {
             console.log(err);
         })
     },
+
+    // === get notes === //
+    getNote: (req, res) => {
+        const articleId = req.params._id;
+        db.Article.findOne({_id: articleId})
+        .populate('note')
+        .then(notes => {
+            res.json(notes);
+        })
+        .catch(err => {
+            if (err) console.log(err);
+        });
+    },
+
     // === add note === //
     addNote: function(req, res) {
-
-
-
-
+        console.log(`*******${req.params._id}**********`);
+        const articleId = req.params._id;
+        db.Note.create(req.body)
+        .then(function(dbNote){
+            return db.Article.findOneAndUpdate({ _id: articleId}, {note: dbNote._id}, {new: true});
+        })
+        .then(function (dbArticle) {
+            res.json(dbArticle);
+        })
+        .catch(function (error){
+            res.json(error);
+        });
     },
+
     // === delete note === //
     deleteNote: function(req, res) {
 

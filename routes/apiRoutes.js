@@ -15,8 +15,11 @@ module.exports = function(app) {
     // Route to delete all articles from scraped/saved
     app.delete("/api/deleteAll", apiController.deleteAll);
 
+    // === Route to get the notes for the articles and populate it === //
+    app.get("/api/notes/:_id", apiController.getNote);
+
     // // Route to add a note to the article
-    // app.post("api/articles/:id", apiController.addNote);
+    app.post("api/articles/:_id", apiController.addNote);
 
     // // Route to delete a note from an article
     // app.delete("api/note/:id", apiController.deleteNote);
