@@ -1,13 +1,4 @@
-{{!-- <div class="col-md-3 mb-3 text-white">
-    <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
-        <a href="/book/{{this.id}}">
-            <div class="card-img-overlay">
-                <h4>{{this.title}}</h4>
-            </div>
-        </a>
-    </div>
-</div> --}}
-
+{{> modal}}
 <ul class="list-unstyled">
     <li class="media">
         <img src="{{this.picture}}" class="mr-3" alt="article picture">
@@ -17,14 +8,20 @@
             {{this.summary}}
             <span><a href="https://www.nytimes.com{{this.link}}" target="_blank" rel="noopener noreferrer"><i
                         class="fas fa-link" style="color: #02a4d3"></i></a></span>
-            <span><i class="far fa-sticky-note" style="color: #02a4d3"></i></span>
+            <span><i class="far fa-sticky-note noteBtn" data-id="{{this._id}}" data-toggle="modal" data-target="#noteModal" style="color: #02a4d3"></i></span>
+            {{#if this.saved }}
+            <span><i data-id="{{this._id}}" class="fas fa-heart heartBtn" style="color: #02a4d3"></i></span>
+            {{else}}
+            <span><i data-id="{{this._id}}" class="far fa-heart heartBtn" style="color: #02a4d3"></i></span>
+            {{/if}}
             {{!-- put a link in the heart so that when clicked, it hits the api route to change the value of saved from false to true, changes the stle of the heart, and redirects to the savedPartial html route --}}
-            <span id="heartBtn" data-id="{{this._id}}"><a><i class="far fa-heart" style="color: #02a4d3"></a></i></span>
+            {{!-- if this.saved (render the ones with hearts so it's consistent) ////// else (render the ones without the save) --}}
+            {{!-- this makes it so whenver the page refreshes, it will make sure to pull the ones that are saved and keep them with a heart --}}
+            {{!-- <span><i data-id="{{this._id}} " class="far fa-heart heartBtn" style="color: #02a4d3"></i></span> --}}
         </div>
     </li>
 </ul>
 
-{{> modal}}
 {{!-- <a href="#" data-toggle="modal" data-target="#articleModal"></a> --}}
 {{!-- change to this when clicked --}}
 {{!-- <i class="fas fa-heart"></i> --}}

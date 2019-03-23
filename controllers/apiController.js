@@ -54,10 +54,16 @@ module.exports = {
             res.redirect('/topic/' + topic);
         })
     },
-    // === NOT WORKING YET, REQ IS NULL === //
+    // === NOT WORKING YET, CAST ERROR === //
     saveArticle: function (req, res) {
         console.log(req.body);
         const id = req.body._id;
+        console.log(`********************************THIS IS THE ID RIGHT HERE${id}*********************************************`);
+        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body._id}*********************************************`);
+        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body.id}*********************************************`);
+        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body}*********************************************`);
+
+
         db.Article.update({_id: id}, {$set: {saved: true}}, {new: true})
             .then(function(upSave) {
                 console.log(upSave);
@@ -66,32 +72,34 @@ module.exports = {
             .catch(function(error){
                 console.log(error);
             })
-        // db.Article.findById(id, {new: true}, function(err, updatedArt){
-        //     if (err) return handleError(err);
-        //     console.log(updatedArt);
-        //     updatedArt.saved = !updatedArt.saved
-        //     updatedArt.save(function(err){
-        //         if(err) return handleError(err);
-        //         res.send(updatedArt);
-        //     })
-        //     // console.log(doc);
-        //     // res.send(doc);
-        // });
     },
+    
     // === delete article from saved article and change from true to false for save === //
     unsaveArticle: function(req, res) {
-
-
-
-
-
+        console.log(req.body);
+        const id = req.body._id;
+        db.Article.update({_id: id}, {$set: {saved: false}})
+            .then(function(upUnsave) {
+                console.log(upUnsave);
+                res.send(upUnsave);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
     },
+
     // === delete all articles === //
     deleteAll: function(req, res) {
+        db.Article.remove({})
+        .then(function(clearedArts){
+            console.log(clearedArts);
+            res.send(clearedArts);
 
-
-
-
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        res.redirect("/")
 
     },
     // === add note === //
