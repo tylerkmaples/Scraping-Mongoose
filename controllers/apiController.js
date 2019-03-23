@@ -54,16 +54,10 @@ module.exports = {
             res.redirect('/topic/' + topic);
         })
     },
-    // === NOT WORKING YET, CAST ERROR === //
+    // === Save Articles/Unsave Articles === //
     saveArticle: function (req, res) {
         console.log(req.body);
         const id = req.body._id;
-        console.log(`********************************THIS IS THE ID RIGHT HERE${id}*********************************************`);
-        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body._id}*********************************************`);
-        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body.id}*********************************************`);
-        console.log(`********************************THIS IS THE ID RIGHT HERE${req.body}*********************************************`);
-
-
         db.Article.update({_id: id}, {$set: {saved: true}}, {new: true})
             .then(function(upSave) {
                 console.log(upSave);
@@ -93,14 +87,10 @@ module.exports = {
         db.Article.remove({})
         .then(function(clearedArts){
             console.log(clearedArts);
-            res.send(clearedArts);
-
         })
         .catch(function(err){
             console.log(err);
         })
-        res.redirect("/")
-
     },
     // === add note === //
     addNote: function(req, res) {

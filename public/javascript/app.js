@@ -75,6 +75,7 @@ $('.clearArts').on('click', function(){
     }).then(function(resp){
         console.log(resp);
     })
+    location.reload(true);
 })
 
 // === Note Functionality === //
