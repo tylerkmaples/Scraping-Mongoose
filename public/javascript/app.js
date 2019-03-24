@@ -1,6 +1,6 @@
 // === AutoScroll for when down arrow button is clicked === //
 
-$("#scrollDownBtn").click(function () {
+$("#scrollDownBtn").on('click touchstart', function () {
     // window.scrollTo('#articles');
     window.scrollTo({
         top: 725,
