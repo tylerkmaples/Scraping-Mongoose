@@ -9,29 +9,11 @@ $("#scrollDownBtn").click(function () {
 });
 
 // === Heart Click Updates the DB === //
-
-// === Save articles === //
-// $('.heartBtn').on('click', function () {
-//     const id = $(this).attr('data-id');
-//     console.log(id);
-//     const saveArt = {
-//         _id: id,
-//     }
-//     $.ajax({
-//         method: 'PUT',
-//         url: '/api/saveArticle',
-//         data: saveArt
-//     }).then(function (resp) {
-//         console.log(resp);
-//         // location.reload();
-//     });
-// });
-
 //  === Combining save/unsave to one function that toggles classes for the heart === //
-$('.heartBtn').on('click', function () {
+$('.heartBtn').on('click', function () { 
 
     // === grab the heart and toggle between classes === //
-    $(this).toggleClass('fas far');
+    $(this).toggleClass('far fas');
 
     // === store the unique data-id from each article into the _id variable === //
     const _id = $(this).attr('data-id');
@@ -48,11 +30,10 @@ $('.heartBtn').on('click', function () {
             data: saveArt
         }).then(function (resp) {
             console.log(resp);
-            // location.reload();
         });
     }
 
-    // === fas means already saved; this will unsave saved arts === //
+   // === fas means already saved; this will unsave saved arts === //
     else if ($(this).hasClass('fas')) {
         console.log(_id);
         const unsaveArt = { _id: _id };
@@ -62,10 +43,10 @@ $('.heartBtn').on('click', function () {
             data: unsaveArt
         }).then(function (resp) {
             console.log(resp);
-            // location.reload();
         })
     }
 });
+
 
 // === Clear All Articles === //
 $('.clearArts').on('click', function () {
@@ -91,7 +72,7 @@ $('.noteBtn').on('click', function () {
         if (resp.note) {
             $('.notesDisplay').empty();
             resp.note.forEach(function (e) {
-                noteDisplay.append(`<li class='comment' data-id='${e._id}'>${e.body}</li>`)
+                $('.notesDisplay').append(`<li class='comment' data-id='${e._id}'>${e.body}</li>`)
             })
         }
         else {
@@ -104,13 +85,19 @@ $('.noteBtn').on('click', function () {
 // === Click on Add Note to Add a Note === //
 $('.addNoteBtn').on('click', function() {
     const _id = $(this).parents('.modal').attr("data-id");
-    const noteBody = $('.noteArea').val().trim();
-    const data = { body: noteBody};
+    // const article = $(this).parents('.modal').data();
+    const noteBody = $('#note-' + _id).val().trim();
+    console.log(noteBody);
+    const data = { body: noteBody };
     $.ajax({
         method: 'POST',
         url: "/api/notes/" + _id,
         data: data
     }).then(function(resp){
         console.log(resp);
+        
     })
+    $('.modal').modal('hide');
+    $('#note-' + _id).val('');
+
 });

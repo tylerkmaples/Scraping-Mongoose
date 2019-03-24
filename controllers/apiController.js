@@ -87,6 +87,13 @@ module.exports = {
         db.Article.remove({})
         .then(function(clearedArts){
             console.log(clearedArts);
+            db.Note.remove({})
+            .then(function(clearNotes){
+                console.log(clearNotes);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
         })
         .catch(function(err){
             console.log(err);
@@ -108,8 +115,8 @@ module.exports = {
 
     // === add note === //
     addNote: function(req, res) {
-        console.log(`*******${req.params._id}**********`);
-        console.log(`**********${req.body}***********`)
+        // console.log(`*******${req.params._id}**********`);
+        // console.log(`**********${req.body.body}***********`)
         const articleId = req.params._id;
         db.Note.create(req.body)
         .then(function(dbNote){
