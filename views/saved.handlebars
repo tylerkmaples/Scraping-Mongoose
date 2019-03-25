@@ -1,22 +1,42 @@
 {{#if articles}}
+{{#each articles}}
+{{> modal}}
 <ul class="list-unstyled">
     <li class="media">
-        <img src="{{this.picture}}" class="mr-3" alt="article picture">
-        <p>{{this.topic}}</p>
-        <div class="media-body">
-            <h5 class="mt-0 mb-1">{{this.title}}</h5>
-            {{this.summary}}
-            <span><a href="https://www.nytimes.com{{this.link}}" target="_blank" rel="noopener noreferrer"><i
-                        class="fas fa-link" style="color: #02a4d3"></i></a></span>
-            <span><i class="far fa-sticky-note noteBtn" data-id="{{this._id}}" data-toggle="modal" data-target="#noteModal" style="color: #02a4d3"></i></span>
-            <span><i data-id="{{this._id}}" class="fas fa-heart heartBtn" style="color: #02a4d3"></i></span>
-            {{!-- put a link in the heart so that when clicked, it hits the api route to change the value of saved from false to true, changes the stle of the heart, and redirects to the savedPartial html route --}}
-            {{!-- if this.saved (render the ones with hearts so it's consistent) ////// else (render the ones without the save) --}}
-            {{!-- this makes it so whenver the page refreshes, it will make sure to pull the ones that are saved and keep them with a heart --}}
-            {{!-- <span><i data-id="{{this._id}} " class="far fa-heart heartBtn" style="color: #02a4d3"></i></span> --}}
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{{this.picture}}" class="mr-3" alt="article picture">
+                <p>{{this.topic}}</p>
+            </div>
+            <div class="col-md-9">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">{{this.title}}</h5>
+                    {{this.summary}}
+                    <span><a href="https://www.nytimes.com{{this.link}}" target="_blank" rel="noopener noreferrer"><i
+                                class="fas fa-link" style="color: #02a4d3"></i></a></span>
+                    <span><i class="far fa-sticky-note noteBtn" data-id="{{this._id}}" data-toggle="modal"
+                            data-target="#id-{{this._id}}" style="color: #02a4d3"></i></span>
+                    <span><i data-id="{{this._id}}" class="fas fa-heart heartBtn" style="color: #02a4d3"></i></span>
+                    {{!-- put a link in the heart so that when clicked, it hits the api route to change the value of saved from false to true, changes the stle of the heart, and redirects to the savedPartial html route --}}
+                    {{!-- if this.saved (render the ones with hearts so it's consistent) ////// else (render the ones without the save) --}}
+                    {{!-- this makes it so whenver the page refreshes, it will make sure to pull the ones that are saved and keep them with a heart --}}
+                    {{!-- <span><i data-id="{{this._id}} " class="far fa-heart heartBtn" style="color: #02a4d3"></i></span> --}}
+                </div>
+            </div>
         </div>
     </li>
 </ul>
+{{/each}}
 {{else}}
-{{> landing}}
+    <div class="jumbotron jumbotron-fluid text-center noArts">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>No Saved Articles</h1>
+                    <p>Saved Articles Will Appear Here</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
 {{/if}}

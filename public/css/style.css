@@ -31,7 +31,33 @@ body {
   color: white;
 }
 
-#noArts {
-  color: #444444;
-  opacity: 0.3;
+.noArts {
+  color: #ffffff;
+  background: none;
+}
+
+ul#landingTopics li {
+  display: inline-block;
+  list-style-type: none;
+  letter-spacing: 25px;
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.nav-item {
+  background: none;
+  transition: background 0.5s;
+}
+
+.nav-item:hover {
+  background: #096e8a
+}
+
+.navCols{
+  text-align: center;
+  /* letter-spacing: 3px; */
+}
+
+.navIcons {
+  margin-right: 10px;
 }
